@@ -1,1 +1,0 @@
-{"rsync":{"/vagrant":{"type":"rsync","guestpath":"/vagrant","hostpath":"/Users/lel/cfpb_dev_internal/localjenkins","disabled":false,"__vagrantfile":true,"owner":"vagrant","group":"vagrant"}}}
