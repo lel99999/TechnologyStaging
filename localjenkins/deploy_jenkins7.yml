@@ -1,0 +1,54 @@
+---
+- hosts: jenkins7
+  vars:
+#   download_url: http://download.oracle.com/otn-pub/java/jdk/8u5-b13/jdk-8u5-linux-x64.tar.gz
+    download_url: http://download.oracle.com/otn-pub/java/jdk/8u181-b13/96a7b8442fe848ef90c96a2fad6ed6d1/jdk-8u181-linux-x64.tar.gz
+    download_folder: /opt
+    java_name: "{{download_folder}}/jdk1.8.0_181"
+    java_archive: "{{download_folder}}/jdk-8u181-linux-x64.tar.gz"
+
+  name: deploy jenkins
+  become: yes
+  become_method: sudo
+  tasks:
+    - name: install libselinux-python
+#     become: yes
+#     become_method: sudo
+      yum:
+        name: libselinux-python
+        state: present
+    - name: install wget
+      yum: 
+        name: wget
+        state: present
+    - name: create directory
+      file:
+        path: /opt/oarcle
+        state: directory
+        owner: root
+        group: root
+        mode: 0755
+    - name: create dir1
+      file:
+        path: /opt/oracle/jdk1.8.0_181
+        state: directory
+        owner: root
+        group: root
+        mode: 0755
+
+
+    - name: download java 8
+      get_url: url={{ download_url }} dest={{ java_archive }} headers="Cookie:' gpw_e24=http%3A%2F%2Fwww.oracle.com%2F; oraclelicense=accept-securebackup-cookie'" validate_certs=no owner=root group=root mode=744
+    - name: unpack archive
+      file: state=directory path={{ java_name }} owner=root group=root recurse=yes
+    - name: update alternatives
+      command: alternatives --install /usr/bin/java java {{ java_name }}/bin/java 50
+
+    - name: download jenkins repo
+      shell: wget -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/redhat-stable/jenkins.repo 
+    - name: install gpg key
+      command: rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io.key
+
+    - name: install jenkins
+      yum:
+        name: jenkins
