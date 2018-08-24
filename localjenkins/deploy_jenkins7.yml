@@ -23,24 +23,27 @@
         state: present
     - name: create directory
       file:
-        path: /opt/oarcle
+        path: /opt/oracle
         state: directory
         owner: root
         group: root
         mode: 0755
-    - name: create dir1
+#    - name: create dir1
       file:
-        path: /opt/oracle/jdk1.8.0_181
-        state: directory
-        owner: root
-        group: root
-        mode: 0755
-
+#       path: /opt/oracle/jdk1.8.0_181
+#       state: directory
+#       owner: root
+#       group: root
+#       mode: 0755
 
     - name: download java 8
       get_url: url={{ download_url }} dest={{ java_archive }} headers="Cookie:' gpw_e24=http%3A%2F%2Fwww.oracle.com%2F; oraclelicense=accept-securebackup-cookie'" validate_certs=no owner=root group=root mode=744
     - name: unpack archive
-      file: state=directory path={{ java_name }} owner=root group=root recurse=yes
+      unarchive:
+        src: {{ java_name }}
+        dest: /opt/oracle/jdk1.8.0_181
+        remote_src: yes
+#     file: state=directory path={{ java_name }} owner=root group=root recurse=yes
     - name: update alternatives
       command: alternatives --install /usr/bin/java java {{ java_name }}/bin/java 50
 
