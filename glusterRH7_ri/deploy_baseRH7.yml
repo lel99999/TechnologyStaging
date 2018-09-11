@@ -1,0 +1,28 @@
+---
+- hosts:  all
+  become: yes
+  become_method: sudo
+  tasks:
+    - name: register system with subscription manager
+      command: subscription-manager register
+
+    - name: identify available entitlement pools
+      command: subscription-manager list --available | grep -A8 "Red Hat Enterprise Linux Server"
+      register: rh7_entitlement_pools
+
+    - debug: var=rh7_entitlement_pools
+
+    - name: attach entitlement pools to system
+      command: subscription-manager attach --pool={{ POOLID }}
+#     command: subscription-manager attach --pool=[POOLID]
+
+    - name: disable other repositorys
+      command: subscription-manager repos --disable "*"
+
+    - name: enable required channels
+      command: subscription-manager repos --enable=rhel-7-server-rpms
+
+    - name: verify channels are enabled
+      command: yum repolist
+      register: rh7_channels_repolist
+

@@ -23,7 +23,8 @@
         state: present
     - name: create directory
       file:
-        path: /opt/oracle
+        path: /usr/java
+#       path: /opt/oracle
         state: directory
         owner: root
         group: root
@@ -39,13 +40,18 @@
     - name: download java 8
       get_url: url={{ download_url }} dest={{ java_archive }} headers="Cookie:' gpw_e24=http%3A%2F%2Fwww.oracle.com%2F; oraclelicense=accept-securebackup-cookie'" validate_certs=no owner=root group=root mode=744
     - name: unpack archive
-      unarchive:
-        src: "{{ java_archive }}"
-        dest: /opt/oracle/jdk1.8.0_181
-        remote_src: yes
+      command:  tar -xzf {{ java_archive }} -C /usr/java
+#     become: yes
+#     become_method: sudo
+#     unarchive:
+#       src: "{{ java_archive }}"
+#       dest: /opt/oracle/jdk1.8.0_181
+#       remote_src: yes
 #     file: state=directory path={{ java_name }} owner=root group=root recurse=yes
     - name: update alternatives
-      command: alternatives --install /usr/bin/java java {{ java_name }}/bin/java 50
+      command: alternatives --install /usr/bin/java java /usr/java/jdk1.8.0_181/bin/java 50
+#     command: alternatives --install /usr/bin/java java /opt/oracle/jdk1.8.0_181/bin/java 50
+#     command: alternatives --install /usr/bin/java java {{ java_name }}/bin/java 50
 
     - name: download jenkins repo
       shell: wget -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/redhat-stable/jenkins.repo 
