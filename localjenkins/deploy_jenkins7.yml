@@ -28,13 +28,13 @@
         owner: root
         group: root
         mode: 0755
-#    - name: create dir1
-#     file:
-#       path: /opt/oracle/jdk1.8.0_181
-#       state: directory
-#       owner: root
-#       group: root
-#       mode: 0755
+    - name: create dir1
+      file:
+        path: /opt/oracle/jdk1.8.0_181
+        state: directory
+        owner: root
+        group: root
+        mode: 0755
 
     - name: download java 8
       get_url: url={{ download_url }} dest={{ java_archive }} headers="Cookie:' gpw_e24=http%3A%2F%2Fwww.oracle.com%2F; oraclelicense=accept-securebackup-cookie'" validate_certs=no owner=root group=root mode=744
