@@ -4,7 +4,7 @@
     src: devtools-2.repo.j2
     dest: /etc/yum.repos.d/devtools-2.repo
     mode: 0644
-  when: not custom_repo
+# when: not custom_repo
   tags:
     - devtools
 
