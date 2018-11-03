@@ -8,7 +8,7 @@ Vagrant.configure("2") do |config|
 #   run "subscription-manager register --username <username> --password <password> --auto-attach
     trigger.name = "After-Up Trigger ..."
     trigger.info = "Trigger Execution ..."
-    trigger.run = { path:"subscription-manager register --username <username> --password <password> --auto-attach"}
+#   trigger.run = { path:"subscription-manager register --username <username> --password <password> --auto-attach"}
   end
 
   config.vm.define "ancillaryRH7" do |ancillaryRH7|
@@ -33,8 +33,10 @@ Vagrant.configure("2") do |config|
     # subscription-manager remove --all
     # subscription-manager unregister
     # subscription-manager clean
-    trigger.run = { path: "subscription-manager remove --all"}
-    trigger.run = { path: "subscription-manager unregister"}
-    trigger.run = { path: "subscription-manager clean"}
+    trigger.name = "Destroy Trigger ..."
+    trigger.info = "Destroy Trigger Execution ..."
+#   trigger.run = { path: "subscription-manager remove --all"}
+#   trigger.run = { path: "subscription-manager unregister"}
+#   trigger.run = { path: "subscription-manager clean"}
   end
 end
