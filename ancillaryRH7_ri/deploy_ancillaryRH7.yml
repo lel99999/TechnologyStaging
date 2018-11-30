@@ -1,25 +1,27 @@
 - hosts: ancillaryRH7
+  vars:  
+    custom_repo: true
   become: yes
   become_method: sudo
   pre_tasks:
-    - name: register RHEL7.5
-      command: "/usr/bin/subscription-manager register --username <name> --password <password> --auto-attach"
+#   - name: register RHEL7.5
+#     command: "/usr/bin/subscription-manager register --username <name> --password <password> --auto-attach"
   roles:
-    - umask
-    - devtools
+#   - umask
+#   - devtools
     - open_office
-    - evince
-    - stattransfer
-    - sublime
-    - ultra-edit
+#   - evince
+#   - stattransfer
+#   - sublime
+#   - ultra-edit
   post_tasks:
-    - name: remove RHEL7.5
-      command:  "/usr/bin/subscription-manager remove --all"
-    - name: unregister RHEL7.5
-      command:  "/usr/bin/subscription-manager unregister"
-    - name: clean RHEL7.5
-      command:  "/usr/bin/subscription-manager clean"
-    - name: Install texlive
-      yum:
-        name: texlive
-        state: present
+#   - name: remove RHEL7.5
+#     command:  "/usr/bin/subscription-manager remove --all"
+#   - name: unregister RHEL7.5
+#     command:  "/usr/bin/subscription-manager unregister"
+#   - name: clean RHEL7.5
+#     command:  "/usr/bin/subscription-manager clean"
+#   - name: Install texlive
+#     yum:
+#       name: texlive
+#       state: present
