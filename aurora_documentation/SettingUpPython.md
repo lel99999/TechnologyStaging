@@ -86,10 +86,10 @@ To install any packages that are needed for the project (NOTE: separate multiple
 
 ```
 # python 2.7
-pip install wsgiref boto
+$pip install wsgiref boto
 
 # python 3.x
-pip3 install wsgiref boto
+$pip3 install wsgiref boto
 ```
 
 To check, which packages have been installed, use 'pip freeze'
@@ -111,3 +111,10 @@ wsgiref==0.1.2
 #### To remove a virtual environment and all packages installed
 
 `$rmvirtualenv pyproject`
+
+
+## Setting up Python 2.x & 3.x on Linux (CentOS/RedHat 7.x)
+
+## Setting up Python 2.x & 3.x on Windows 10
+
+## Using Anaaconda
