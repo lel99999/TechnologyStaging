@@ -1,0 +1,5 @@
+[linuxhosts]
+mongodb ansible_host=192.168.60.232 
+
+[windowshosts]
+winELKAD01 ansible_host=192.168.60.170

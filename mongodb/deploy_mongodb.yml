@@ -1,0 +1,12 @@
+---
+- hosts: mongodb
+  become: yes
+  become_method: sudo
+  tasks:
+    - name: add repository
+      shell: echo $'[mongodb-org-4.0]\nname=MongoDB Repo\nbaseurl=https://repo.mongodb.org/yum/redhat/$releaseserver/mongodb-org/4.0/x86_64/\ngpgcheck=1\ngpgkey=https://www.mongodb.org/static/pgp/server-4.0.asc\nenabled=1' | sudo tee /etc/yum.repos.d/elasticsearch.repo
+    - name: install mongodb
+      yum:
+        name: mongodb-org
+        state: latest
+
