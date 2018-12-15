@@ -10,16 +10,20 @@ Prerequisites:
 homebrew
 
 Check if homebrew is installed:
-```$which brew
+
+```
+$which brew
 /Users/<yourID>/homebrew/bin/brew
 ```
 
 #### Install Python
 
 Install the latest version of python 2.7:
+
 `$brew install python`
 
 Install the latest version of python 3.x:
+
 `$brew install python3`
 
 #### Install virtualenv and virtualenvwrapper
@@ -63,13 +67,11 @@ You have activated virtualenvwrapper and locked down pip to work only inside a v
 Create projects 
 
 ```
-
 # python 2.7
 $mkvirtualenv pyproject
 
 # python 3.x
 $mkvirtualenv -p python3 pyproject
-
 ```
 
 You should see the name of the virtual environment in the prompt indicating it is safe to install packages with pip
@@ -80,26 +82,22 @@ You should see the name of the virtual environment in the prompt indicating it i
 
 ```
 
-To install any packages that are needed for the project (NOTE: separate multiple pacages with a space)
+To install any packages that are needed for the project (NOTE: separate multiple packages with a space)
 
 ```
-
 # python 2.7
 pip install wsgiref boto
 
 # python 3.x
 pip3 install wsgiref boto
-
 ```
 
 To check, which packages have been installed, use 'pip freeze'
 
 ```
-
 $pip freeze
 boto==2.3.0
 wsgiref==0.1.2
-
 ```
 
 #### To exit the virtual environment
