@@ -35,21 +35,21 @@ $pip install virtualenvwrapper
 #### Update and set environment persistence in your bash profile
 
 ```
-1. # to activate virtualenvwrapper
-1. source /usr/local/bin/virtualenvwrapper.sh
-1. 
-1. # pip should only run if a virtualenv is currently activated
-1. export PIP_REQUIRE_VIRTUALENV=true
-1. 
-1. # commands to override pip restrictions
-1. # use `gpip` or `gpip3` to force installation of packages in the global python environment
-1. gpip(){
-1.   PIP_REQUIRE_VIRTUALENV="" pip "$@"
-1. }
-1. 
-1. gpip3(){
-1.   PIP_REQUIRE_VIRTUALENV="" pip3 "$@"
-1. }
+1.  # to activate virtualenvwrapper
+2.  source /usr/local/bin/virtualenvwrapper.sh
+3. 
+4.  # pip should only run if a virtualenv is currently activated
+5.  export PIP_REQUIRE_VIRTUALENV=true
+6. 
+7.  # commands to override pip restrictions
+8.  # use `gpip` or `gpip3` to force installation of packages in the global python environment
+9.  gpip(){
+10.   PIP_REQUIRE_VIRTUALENV="" pip "$@"
+11. }
+12. 
+13. gpip3(){
+14.   PIP_REQUIRE_VIRTUALENV="" pip3 "$@"
+15. }
 ```
 
 Save the file, then to update your current environment with the changes:
