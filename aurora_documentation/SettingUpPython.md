@@ -114,7 +114,27 @@ wsgiref==0.1.2
 
 
 ## Setting up Python 2.x & 3.x on Linux (CentOS/RedHat 7.x)
+Important as it will allow you to install Python 2.x & 3.x without breaking the system's default Python 2.6 and yum.
+
+### CentOS 7
+
+`$ sudo yum install centos-release-scl scl-utils-build`
+
+Install Python 3
+`$ sudo yum install python33`
+
+Run applications under Python3
+`$scl enable python33 bash`
+
+Check your Python version
+'''
+ $python --version
+ Python 3.3.2
+'''
+
+
 
 ## Setting up Python 2.x & 3.x on Windows 10
 
 ## Using Anaaconda
+
