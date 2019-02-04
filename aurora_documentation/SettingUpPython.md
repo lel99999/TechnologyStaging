@@ -34,8 +34,44 @@ $brew install python3
 
 Python 2 > 2.7.8 and Python 3 > 3.3  (i.e. Python 2 -> 2.7.9 or greater/Python 3 -> 3.4 or greater) ship with pip.
 
+__If you only have Python 3 installed, then you do not have to install virtualenv; you can use it by running the following command:__
+```
+#Creeates a python 3 virtualenv
+$python3 -m venv pyproject
+```
+#### Pip Basics
+__Install Packages__<br>
+```
+$pip install [package-name]
+
+# Install Flask
+$pip install flask
+```
+__UnInstall Packages__
+```
+$pip uninstall [package-name]
+```
+
+__Search/Find/Explore a package__
+```
+$pip search [search-item]
+```
+
+__Catalog Packages into a list of requirements__<br>
+The pip freeze command automatically prints out a list of the installed packages and their versions. 
+```
+$pip freeze > requirements.txt
+```
+
+__Install Cataloged Packages__<br>
+To install all the packages from the requirements.txt 
+```
+$pip install -r requirements.txt
+```
+
+
 #### Install virtualenv and virtualenvwrapper
-Virtualenv is a tool that lets you create isolated Python environments for your projectrs.  It creates an environment that has its own installation directories, that doesn't share dependencies with other 'virtualenv' environments (and optionally doesn't access the globally installed dependencies either).  Virtualenvwrapper is an extension to 'virtualenv' which provides a set of friendly commands that helps simplify an otherwise obtus virtualenv.  It makes it easier to work on multiple projects and helps simplify the creation and deletion of virtual environments without creating dependency conflicts.
+Virtualenv is a tool that lets you create isolated Python environments for your projectrs.  Virtualenv allows for dependency sandboxing as it creates an environment that has its own installation directories, that doesn't share dependencies with other 'virtualenv' environments (and optionally doesn't access the globally installed dependencies either).  Virtualenvwrapper is an extension to 'virtualenv' which provides a set of friendly commands that helps simplify an otherwise obtus virtualenv.  It makes it easier to work on multiple projects and helps simplify the creation and deletion of virtual environments without creating dependency conflicts.
 
 To install virtualenv and virtualenvwrapper:
 ```
@@ -195,12 +231,11 @@ C:\Users\devuer\pip install virtualenvwrapper-win
 
 #### Start Using/Development
 ```
-1.  Make a Virtual Environment
-2.  Connect our project with our Environment
-3.  Set Project Directory
-4.  Deactivate
-5.  Workon
-6.  Pip Install <packages>
+1.  Make a Virtual Environment/Create Project
+2.  Set Project Directory
+3.  Deactivate
+4.  Workon
+5.  Pip Install <packages>
 ```
 
 #####  Create Project
@@ -210,6 +245,15 @@ C:\Users\devuser\mkvirtualenv pyproject
 ```
 
 This will create a folder with python.exe, pip, and setuptools in its own environment. It will also activate the Virtual Environment which is indicated with the (pyproject) on the left side of the prompt.
+
+####  Set project directory other than the default root directory
+Create Dev Folder and bind virtualenv with Dev directory<br>
+```
+(pyproject) C:\Users\devuser\pyproject>mkdir Dev
+(pyproject) C:\Users\devuser\pyproject>cd Dev
+(pyproject) C:\Users\devuser\pyproject\Dev>setprojectdir .
+```
+This will bind the virtualenv to Dev as the default directory. Whenenver this environment is activated, you will go directly to this directory.
 
 ##### To exit the virtual environment
 
@@ -225,7 +269,7 @@ C:\Users\devuser\workon pyproject
 
 
 ## Setting up Python 2.x & 3.x on Linux (CentOS/RedHat 7.x)
-***NOTE*** As yum is an important package manager for CentOS/RedHat, and built with Python 2.6, the process of installing Python requires caution as it may break yum and certain dependencies. Therefore it is recommend to use Software Collections
+***NOTE*** As yum is an important package manager for CentOS/RedHat, and built with Python 2.6, the process of installing Python requires caution as it may break yum and certain dependencies. There are a number of ways to install Python, one is to download and build Python (configure/make/make install) and the other is to use Software Collections.  It is recommended to use Software Collections
 
 ***Software Collections (SCL)*** provides the power to build, install and use multiple versions of software on the same system without affecting system-wide installed packages.  The SCL packaging technique is frequently used for building stacks for Red Hat Enterprise Linux and CentOS, especially dynamic languages (Python, Ruby, NodeJS) or databases (PostgreSQL, MariaDB, MongoDB)
 
@@ -312,4 +356,18 @@ $docker pull rhscl/python-36-rhel7
 ```
 
 
-## Using Anaaconda
+## Using Anaconda
+
+## Anaconda vs. Miniconda
+__Conda__ is the package manager (e.g. `$conda list` displays all installed packages in the environment)
+### Choose Anaconda if the following applies to you:
+- Are new to conda or Python
+- Like the convenience of having Python and over 150 scientific packages automatically installed at once
+- Have the time and disk space (a few minutes and 3 GB), and/or
+- Don’t want to install each of the packages you want to use individually
+
+### Chose Miniconda if the following applies to you:
+- Do not mind installing each of the packages you want to use individually
+- Do not have time or disk space to install over 150 packages at once, and/or
+- Just want fast access to Python and the conda commands, and wish to sort out the other programs later
+
